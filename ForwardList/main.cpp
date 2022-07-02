@@ -42,6 +42,25 @@ public:
 		Head = New;
 
 	}
+	/*void push_back(int Data)
+	{
+		Element* Temp = Head;
+		while (Temp)
+		{
+			Temp = Temp->pNext;
+		}
+		Element* New = new Element(Data);
+		Temp->pNext = 0;
+	}*/
+
+	void pop_front()
+	{
+		Element* del = Head;
+		Head = Head->pNext;
+		delete del;
+
+	}
+
 	//			Methods
 	void print()const
 	{
@@ -64,6 +83,10 @@ void main()
 	for (int i = 0; i < n; i++)
 	{
 		list.push_front(rand() % 100);
+		//list.push_back(rand() % 100);
 	}
 	list.print();
+	list.pop_front();
+	list.print();
+
 }
