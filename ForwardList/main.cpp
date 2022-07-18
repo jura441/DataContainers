@@ -6,6 +6,7 @@ using std::endl;
 #define tab "\t"
 #define delimeter "\n------------------------------------------\n"
 class ForwardList;
+
 class Element
 {
 	int Data;		//значение элемента
@@ -24,15 +25,68 @@ public:
 	}
 	friend class ForwardList;
 	friend ForwardList operator+(const ForwardList& left, const ForwardList& right);
+	friend class Iterator;
 };
 
 int Element::count = 0;
+
+class Iterator
+{
+	Element* Temp;
+public:
+	Iterator(Element* Temp = nullptr) :Temp(Temp)
+	{
+		cout << "ItConstructor:\t" << this << endl;
+	}
+	~Iterator()
+	{
+		cout << "ItDestructor:\t" << this << endl;
+
+	}
+
+	Iterator& operator++()
+	{
+		Temp = Temp->pNext;
+		return *this;
+	}
+	Iterator operator++(int)
+	{
+		Iterator old = *this;
+		Temp = Temp->pNext;
+		return old;
+	}
+	bool operator==(const Iterator& other)const
+	{
+		return this->Temp == other.Temp;
+	}
+	bool operator!=(const Iterator& other)const
+	{
+		return this->Temp != other.Temp;
+	}
+
+	const int& operator*() const
+	{
+		return Temp->Data;
+	}
+	int& operator*() 
+	{
+		return Temp->Data;
+	}
+};
 
 class ForwardList
 {
 	Element* Head;		//голова списка
 	unsigned int size;
 public:
+	Iterator begin()
+	{
+		return Head;
+	}
+	Iterator end()
+	{
+		return nullptr;
+	}
 	ForwardList()
 	{
 		Head = nullptr;		//Когда голова списка указывает на 0 - спискок пуст
@@ -269,6 +323,15 @@ void main()
 
 	ForwardList list = { 3,5,8,13,21 };
 	list.print();
-
+	for (int i: list)
+	{
+		cout << i << tab;
+	}
+	cout << endl;
+	for (Iterator it = list.begin(); it != list.end(); ++it)
+	{
+		cout << *it << tab;
+	}
+	cout << endl;
 
 }

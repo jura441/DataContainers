@@ -7,6 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ForwardList", "ForwardList\
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ForwardList1", "ForwardList1\ForwardList1.vcxproj", "{021DAA4F-C38F-48BA-83B3-8A23ED437D9F}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "List2", "List2\List2.vcxproj", "{7EC0B5FB-0AEB-4A7D-B2C2-06618A166361}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -31,6 +33,14 @@ Global
 		{021DAA4F-C38F-48BA-83B3-8A23ED437D9F}.Release|x64.Build.0 = Release|x64
 		{021DAA4F-C38F-48BA-83B3-8A23ED437D9F}.Release|x86.ActiveCfg = Release|Win32
 		{021DAA4F-C38F-48BA-83B3-8A23ED437D9F}.Release|x86.Build.0 = Release|Win32
+		{7EC0B5FB-0AEB-4A7D-B2C2-06618A166361}.Debug|x64.ActiveCfg = Debug|x64
+		{7EC0B5FB-0AEB-4A7D-B2C2-06618A166361}.Debug|x64.Build.0 = Debug|x64
+		{7EC0B5FB-0AEB-4A7D-B2C2-06618A166361}.Debug|x86.ActiveCfg = Debug|Win32
+		{7EC0B5FB-0AEB-4A7D-B2C2-06618A166361}.Debug|x86.Build.0 = Debug|Win32
+		{7EC0B5FB-0AEB-4A7D-B2C2-06618A166361}.Release|x64.ActiveCfg = Release|x64
+		{7EC0B5FB-0AEB-4A7D-B2C2-06618A166361}.Release|x64.Build.0 = Release|x64
+		{7EC0B5FB-0AEB-4A7D-B2C2-06618A166361}.Release|x86.ActiveCfg = Release|Win32
+		{7EC0B5FB-0AEB-4A7D-B2C2-06618A166361}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
