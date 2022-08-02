@@ -198,5 +198,5 @@ void main()
 	list.erase(index);
 	list.print();
 	list.reverse_print();
-
+	cout << "Clone OK" << endl;
 }
