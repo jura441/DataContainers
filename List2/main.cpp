@@ -36,6 +36,10 @@ public:
 		{
 			cout << "ItConstructor:\t" << this << endl;
 		}
+		~Iterator() 
+		{
+			cout << "ItDestructor:\t" << this << endl;
+		}
 		Iterator& operator++()
 		{
 			Temp = Temp->pNext;
@@ -84,10 +88,10 @@ public:
 		{
 			cout << "RItConstructor:\t" << this << endl;
 		}
-		/*ReverseIterator rbegin();
+		~ReverseIterator()
 		{
-			return Tail;
-		}*/
+			cout << "RItDestructor:\t" << this << endl;
+		}
 
 		ReverseIterator& operator++()
 		{
@@ -111,7 +115,7 @@ public:
 			Temp = Temp->pNext;
 			return old;
 		}
-
+	
 		bool operator == (const ReverseIterator& other)const
 		{
 			return this->Temp == other.Temp;
@@ -138,6 +142,14 @@ public:
 	{
 		return nullptr;
 	}
+	ReverseIterator rbegin()
+		{
+			return Tail;
+		}
+	ReverseIterator rend()
+		{
+			return nullptr;
+		} 
 
 	List()
 	{
@@ -347,7 +359,7 @@ void main()
 	for (int i : list)cout << i << tab; cout << endl;
 
 	List::ReverseIterator rend = list.rend();
-	for (List::ReverseIterator rit = list.rbegin(); rit != rend(); ++rit)
+	for (List::ReverseIterator rit = list.rbegin(); rit != rend; ++rit)
 	{
 		cout << *rit << tab;
 	}
