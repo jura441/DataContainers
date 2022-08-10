@@ -311,6 +311,8 @@ public:
 };
 
 //#define BASE_CHECK
+#define ITERATORS_CHECK_1
+
 void main()
 {
 	setlocale(LC_ALL, "");
@@ -354,6 +356,7 @@ void main()
 	}
 #endif // BASE_CHECK
 
+#ifdef ITERATORS_CHECK_1
 	List list = { 3,5,8,13,21 };
 	list.print();
 	for (int i : list)cout << i << tab; cout << endl;
@@ -364,4 +367,7 @@ void main()
 		cout << *rit << tab;
 	}
 	cout << endl;
+#endif // ITERATORS_CHECK_1
+
+	
 }
