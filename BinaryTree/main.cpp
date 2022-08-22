@@ -51,6 +51,7 @@ public:
 	}
 	~Tree()
 	{
+		clear(Root);
 #ifdef DEBUG
 		cout << "TDestructor: \t" << this << endl;
 #endif // DEBUG
@@ -60,6 +61,10 @@ public:
 	void insert(int Data)
 	{
 		insert(Data, Root);
+	}
+	void erase(int Data)
+	{
+		erase(Data, Root);
 	}
 	int minValue()const
 	{
@@ -85,7 +90,10 @@ public:
 	{
 		return depth(Root);
 	}
-	
+	void clear()
+	{
+		clear(Root);
+	}
 	void print()const
 	{
 		print(Root);
@@ -108,18 +116,44 @@ private:
 			else insert(Data, Root->pRight);
 		}
 	}
-	
+	void erase(int Data, Element*& Root)
+	{
+		if(Root == nullptr)return;
+		erase(Data, Root->pLeft);
+		erase(Data, Root->pRight);
+		if (Data == Root->Data)
+		{
+			if (Root->pLeft == Root->pRight)
+			{
+				delete Root;
+				Root = nullptr;
+			}
+			else
+			{
+				if (count(Root->pLeft) > count(Root->pLeft))
+				{
+					Root->Data - maxValue(Root->pLeft);
+					erase(maxValue(Root->pLeft), Root->pLeft);
+				}
+				else
+				{
+					Root->Data = minValue(Root->pRight);
+					erase(minValue(Root->pRight), Root->pRight);
+				}
+			}
+		}
+	}
 	int minValue(Element* Root)const
 	{
 		/*if (Root->pLeft == nullptr)return Root->Data;
 		else return minValue(Root->pLeft);*/
-		return Root->pLeft == nullptr ? Root->Data : minValue(Root->pLeft);
+		return Root==nullptr? 0 : Root->pLeft == nullptr ? Root->Data : minValue(Root->pLeft);
 	}
 	int maxValue(Element* Root)const
 	{
 		/*if (Root->pRight == nullptr)return Root->Data;
 		else return maxValue (Root->pLeft);*/
-		return Root->pRight ? maxValue(Root->pRight) : Root->Data;
+		return !Root? 0 : Root->pRight ? maxValue(Root->pRight) : Root->Data;
 	}
 	int count(Element* Root)const
 	{
@@ -137,6 +171,15 @@ private:
 		else depth(Root->pLeft) > depth(Root->pRight) ?
 			depth(Root->pLeft) + 1 :
 			depth(Root->pRight) + 1;
+	}
+	void clear(Element*& Root)
+	{
+		if (Root == nullptr)return;
+		clear(Root->pLeft);
+		clear(Root->pRight);
+		delete Root;
+		Root = nullptr;
+
 	}
 	void print(Element* Root)const
 	{
@@ -171,10 +214,13 @@ public:
 	}
 };
 
+#define BASE_CHECK
+
 void main()
 {
 	setlocale(LC_ALL, "");
 
+#ifdef BASE_CHECK
 	int n;
 	cout << "Введите размер дерева: "; cin >> n;
 	Tree tree;
@@ -185,6 +231,7 @@ void main()
 		tree.insert(number);
 	}
 	cout << endl;
+	tree.clear();
 	tree.print();
 	cout << endl;
 	cout << "Минимальное значение в дереве: " << tree.minValue() << endl;
@@ -209,8 +256,13 @@ void main()
 	cout << "Сумма элементов дерева:" << tree.Sum() << endl;
 	cout << "Среднее арифметическое элементов дерева:" << unique_tree.Avg() << endl;
 	cout << "Глубина дерева:" << unique_tree.depth() << endl;
-	
+#endif // BASE_CHECK
+		
 	Tree deep_tree = { 50, 25, 75, 16, 32, 64, 85 };
 	deep_tree.print();
 	cout << "Глубина дерева: " << deep_tree.depth() << endl;
+	int value;
+	cout << "Введите удаляемое значение: "; cin >> value;
+	deep_tree.erase(value);
+	deep_tree.print();
 }
